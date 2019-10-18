@@ -14,10 +14,22 @@ export default class EmailAndPassword extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput placeholder="email" style={styles.login}/>
-        <TextInput placeholder="password" style={styles.login}/>
+        <TextInput
+          placeholder="email"
+          style={styles.login}
+          value={this.state.email}
+          onChangeText={(email) => this.setState({ email: email })}
+          />
+        <TextInput
+          placeholder="password"
+          style={styles.login}
+          value={this.state.password}
+          onChangeText={(password) => this.setState({ password: password })}
+          />
         <TouchableOpacity>
-          <Text>{this.state.error}</Text>
+          <Text style={styles.error}>
+            {this.state.error}
+          </Text>
         </TouchableOpacity>
       </View>
     )
@@ -25,15 +37,21 @@ export default class EmailAndPassword extends Component {
 }
 
 const styles = StyleSheet.create({
+  error: {
+    color: 'red',
+    fontSize: 28
+  },
   login: {
-    backgroundColor: 'red',
+    backgroundColor: 'skyblue',
     borderRadius: 30,
+    borderColor: 'black',
+    borderWidth: 2,
     paddingHorizontal: 80,
-    maxWidth: '60%'
+    maxWidth: '60%',
+    marginTop: 5
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, ImageBackground } from 'react-native';
 
 import Articles from './components/Articles'
 import EmailAndPassword from './components/EmailAndPassword'
 import Loading from './components/Loading'
 import LoginForm from './components/LoginForm'
 import Logo from './components/Logo'
-
+import Teal from './components/tealbg.jpg'
 export default class App extends Component {
   constructor() {
     super()
@@ -18,7 +18,9 @@ export default class App extends Component {
   renderContent = () => {
     switch (this.state.loggedIn) {
       case false:
-        return <LoginForm/>
+        return <ImageBackground style={styles.container} source={Teal}>
+                  <LoginForm/>
+              </ImageBackground>
       case true:
         return <Articles />
 
@@ -36,8 +38,9 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    height: '100%',
+    width: '100%',
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

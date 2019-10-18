@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
   logo: {
     fontSize: 50,
     fontWeight: '600',
-    backgroundColor: 'teal',
-    color: 'white',
+    backgroundColor: 'skyblue',
+    color: 'black',
     borderRadius: 50,
     paddingLeft: 20,
     paddingBottom: 5,
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
