@@ -12,14 +12,13 @@ export default function LoginForm() {
       <View style={styles.EmailAndPassword}>
         <EmailAndPassword />
       </View>
-      <View style={styles.buffer}><Text>made by me</Text></View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   buffer: {
-    flex: 3
+    flex: 1
   },
   EmailAndPassword: {
     alignItems: 'center',
@@ -28,8 +27,9 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    marginBottom: 40
   },
   container: {
     flex: 1,

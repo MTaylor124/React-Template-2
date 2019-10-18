@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import firebase from 'firebase'
 export default function Articles() {
   return (
     <View style={styles.container}>
-      <Text>Articles</Text>
+      <Text>congrats you buttfucker you logged in</Text>
+      <TouchableOpacity
+      onPress={() => {
+        firebase.auth().signOut()
+      }}>
+        <Text>sign out</Text>
+      </TouchableOpacity>
     </View>
   );
 }
