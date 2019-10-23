@@ -10,42 +10,119 @@ export default class EmailAndPassword extends Component {
       email: '',
       password: '',
       error: '',
-      loading: false
+      loading: false,
+      loggingIn: false,
+      signingUp: false
     }
   }
 
-  onButtonPress(email, password) {
+  onSignIn(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch((error) => {
+        this.setState({
+          error: error.message
+        })
+      })
   }
 
+  onSignUp(email, password) {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .catch((error) => {
+      this.setState({
+        error: error.message
+      })
+    })
+  }
+  onToggleLogin(loggingIn) {
+    if (loggingIn) {
+      this.setState({ loggingIn: false })
+    } else {
+      this.setState({ loggingIn: true, signingUp: false })
+    }
+  }
+
+  onToggleSignUp (signingUp) {
+    if (signingUp) {
+      this.setState({ signingUp: false })
+    } else {
+      this.setState({ signingUp: true, loggingIn: false })
+    }
+  }
   render() {
+    let loginStatus
+    if (this.state.loggingIn) {
+      loginStatus = (
+        <View style={styles.centered}>
+      <TextInput
+        placeholder="email"
+        placeholderTextColor='black'
+        style={styles.login}
+        value={this.state.email}
+        onChangeText={(email) => this.setState({email})}
+      />
+      <TextInput
+        placeholder="password"
+        secureTextEntry
+        placeholderTextColor='black'
+        style={styles.login}
+        value={this.state.password}
+        onChangeText={(password) => this.setState({password})}
+      />
+      <TouchableOpacity
+        onPress={() => {this.onSignIn(this.state.email, this.state.password)}}
+      >
+        <Text style={styles.loginbutton}>Login</Text>
+      </TouchableOpacity>
+      </View>
+    )
+  } else if (this.state.signingUp) {
+    loginStatus = (
+      <View style={styles.centered}>
+    <TextInput
+      placeholder="email"
+      placeholderTextColor='black'
+      style={styles.login}
+      value={this.state.email}
+      onChangeText={(email) => this.setState({email})}
+    />
+    <TextInput
+      placeholder="password"
+      secureTextEntry
+      placeholderTextColor='black'
+      style={styles.login}
+      value={this.state.password}
+      onChangeText={(password) => this.setState({password})}
+    />
+    <TouchableOpacity
+      onPress={() => {this.onSignUp(this.state.email, this.state.password)}}
+    >
+      <Text style={styles.loginbutton}>sign up</Text>
+    </TouchableOpacity>
+    </View>
+  )
+  }
+
     return (
-      <View style={styles.container}>
-        <TextInput
-          placeholder="email"
-          placeholderTextColor='black'
-          style={styles.login}
-          value={this.state.email}
-          onChangeText={(email) => this.setState({email})}
-          />
-        <TextInput
-          placeholder="password"
-          placeholderTextColor='black'
-          style={styles.login}
-          value={this.state.password}
-          onChangeText={(password) => this.setState({password})}
-          />
-        <TouchableOpacity
-          onPress={() => {this.onButtonPress(this.state.email, this.state.password)}}
+      <View style={styles.pushToTop}>
+        <View style={styles.signUpAndIn}>
+          <TouchableOpacity
+            onPress={() => {this.onToggleLogin(this.state.loggingIn)}}
           >
-          <Text style={styles.loginbutton}>Login</Text>
-        </TouchableOpacity>
+            <Text style={styles.loginbutton}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {this.onToggleSignUp(this.state.signingUp)}}
+          >
+            <Text style={styles.loginbutton}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+        {loginStatus}
         <Text style={styles.error}>
         {this.state.error}
         </Text>
 
         <TouchableOpacity
-          onPress={() => {this.onButtonPress('m12428taylor@gmail.com', 'Sprint546')}}
+          onPress={() => {this.onSignIn('demo@demo.com', 'demodemo')}}
           >
           <Text style={styles.loginbutton}>auto sign-in</Text>
         </TouchableOpacity>
@@ -55,19 +132,33 @@ export default class EmailAndPassword extends Component {
 }
 
 const styles = StyleSheet.create({
+  pushToTop: {
+    justifyContent: 'flex-start'
+  },
+  centered: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  signUpAndIn: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   error: {
     color: 'red',
     fontSize: 28
   },
   login: {
+    textAlign: 'center',
     color: 'black',
-    backgroundColor: 'skyblue',
+    backgroundColor: 'rgba(255,255,255,0.35)',
     borderRadius: 30,
-    borderColor: 'black',
+    borderColor: 'rgba(255,255,255,0.5)',
     borderWidth: 2,
     paddingHorizontal: 80,
-    maxWidth: '60%',
-    marginTop: 8
+    marginTop: 8,
+    fontSize: 30,
+    width: 300
   },
   container: {
     flex: 1,
@@ -77,13 +168,14 @@ const styles = StyleSheet.create({
   loginbutton: {
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: 50,
+    fontSize: 30,
     fontWeight: '600',
     backgroundColor: 'rgba(255,255,255,0.4)',
     borderColor: 'rgba(255,255,255,0.3)',
     borderRadius: 50,
     borderWidth: 6,
-    paddingLeft: 25,
-    margin: 30
+    paddingHorizontal: 10,
+    margin: 30,
+    textAlign: 'center'
   }
 });

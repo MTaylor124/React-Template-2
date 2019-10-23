@@ -17,23 +17,19 @@ export default function LoginForm() {
 }
 
 const styles = StyleSheet.create({
-  buffer: {
-    flex: 1
-  },
   EmailAndPassword: {
+    flex: 4,
     alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1
+    justifyContent: 'flex-start',
   },
   logoContainer: {
     flex: 1,
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
-    marginBottom: 40
+
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start'
   },
   container: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
 });

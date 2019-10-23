@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, ImageBackground } from 'react-native';
+
 import firebase from 'firebase'
+
 import Articles from './components/Articles'
 import EmailAndPassword from './components/EmailAndPassword'
 import Loading from './components/Loading'
 import LoginForm from './components/LoginForm'
 import Logo from './components/Logo'
 import Teal from './components/tealbg.jpg'
+import Teal2 from './components/tealbg2.jpg'
 export default class App extends Component {
   constructor() {
     super()
@@ -46,7 +49,12 @@ export default class App extends Component {
                   <LoginForm/>
               </ImageBackground>
       case true:
-        return <Articles />
+        return <ImageBackground style={styles.container} source={Teal2}>
+                  <Articles />
+              </ImageBackground>
+
+      default:
+        return <Loading />
 
     }
   }
