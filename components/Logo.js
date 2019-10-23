@@ -13,13 +13,13 @@ const styles = StyleSheet.create({
   logo: {
     fontSize: 50,
     fontWeight: '600',
-    backgroundColor: 'skyblue',
+    backgroundColor: 'rgba(255,255,255,0.6)',
     color: 'black',
     borderRadius: 50,
     paddingLeft: 20,
     paddingBottom: 5,
     borderWidth: 5,
-    borderColor: 'black'
+    borderColor: 'rgba(255,255,255,0.5)'
   },
   container: {
     flex: 1,

@@ -103,7 +103,12 @@ export default class EmailAndPassword extends Component {
   }
 
     return (
-      <View style={styles.pushToTop}>
+      <View>
+      <TouchableOpacity
+        onPress={() => {this.onSignIn('demo@demo.com', 'demodemo')}}
+        >
+        <Text style={styles.autobutton}>auto sign-in</Text>
+      </TouchableOpacity>
         <View style={styles.signUpAndIn}>
           <TouchableOpacity
             onPress={() => {this.onToggleLogin(this.state.loggingIn)}}
@@ -120,21 +125,12 @@ export default class EmailAndPassword extends Component {
         <Text style={styles.error}>
         {this.state.error}
         </Text>
-
-        <TouchableOpacity
-          onPress={() => {this.onSignIn('demo@demo.com', 'demodemo')}}
-          >
-          <Text style={styles.loginbutton}>auto sign-in</Text>
-        </TouchableOpacity>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  pushToTop: {
-    justifyContent: 'flex-start'
-  },
   centered: {
     justifyContent: 'center',
     alignItems: 'center'
@@ -175,7 +171,19 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 6,
     paddingHorizontal: 10,
-    margin: 30,
+    margin: 20,
+    textAlign: 'center'
+  },
+  autobutton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 30,
+    fontWeight: '600',
+    backgroundColor: 'rgba(255,255,255,0.4)',
+    borderColor: 'rgba(255,255,255,0.3)',
+    borderRadius: 50,
+    borderWidth: 6,
+    paddingHorizontal: 10,
     textAlign: 'center'
   }
 });
