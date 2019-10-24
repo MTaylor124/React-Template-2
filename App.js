@@ -10,6 +10,7 @@ import LoginForm from './components/LoginForm'
 import Logo from './components/Logo'
 import Teal from './components/tealbg.jpg'
 import Teal2 from './components/tealbg2.jpg'
+
 export default class App extends Component {
   constructor() {
     super()
@@ -21,17 +22,9 @@ export default class App extends Component {
 
   componentDidMount() {
     const firebaseConfig = {
-      apiKey: "AIzaSyCZ3nmX5s-xM32aQplwbCDNqZeKc9p9kho",
-      authDomain: "login-app-cc746.firebaseapp.com",
-      databaseURL: "https://login-app-cc746.firebaseio.com",
-      projectId: "login-app-cc746",
-      storageBucket: "login-app-cc746.appspot.com",
-      messagingSenderId: "767541623564",
-      appId: "1:767541623564:web:b78ba877d28c031834e729",
-      measurementId: "G-VSBDESWR36"
+      // PUT FIREBASE KEYS HERE
     }
     firebase.initializeApp(firebaseConfig)
-    // firebase.analytics()
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
