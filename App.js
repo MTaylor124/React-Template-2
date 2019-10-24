@@ -3,13 +3,13 @@ import { StyleSheet, Text, View, StatusBar, ImageBackground } from 'react-native
 
 import firebase from 'firebase'
 
-import SignedInScreen from './components/SignedInScreen'
-import EmailAndPassword from './components/EmailAndPassword'
-import Loading from './components/Loading'
-import LoginForm from './components/LoginForm'
-import Logo from './components/Logo'
-import Teal from './components/tealbg.jpg'
-import Teal2 from './components/tealbg2.jpg'
+import SignedInScreen from './components/Auth/SignedInScreen'
+import EmailAndPassword from './components/Auth/EmailAndPassword'
+import Loading from './components/Auth/Loading'
+import LoginForm from './components/Auth/LoginForm'
+import Logo from './components/Auth/Logo'
+import Teal from './components/Auth/tealbg.jpg'
+import Teal2 from './components/Auth/tealbg2.jpg'
 
 export default class App extends Component {
   constructor() {
