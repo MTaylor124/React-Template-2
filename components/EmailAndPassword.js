@@ -116,7 +116,6 @@ export default class EmailAndPassword extends Component {
     >
       <Text style={styles.loginbutton}>sign up</Text>
     </TouchableOpacity>
-    <Text>{this.state.verifyPassword}</Text>
     </View>
   )
   }

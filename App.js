@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, StatusBar, ImageBackground } from 'react-native
 
 import firebase from 'firebase'
 
-import Articles from './components/Articles'
+import SignedInScreen from './components/SignedInScreen'
 import EmailAndPassword from './components/EmailAndPassword'
 import Loading from './components/Loading'
 import LoginForm from './components/LoginForm'
@@ -22,7 +22,14 @@ export default class App extends Component {
 
   componentDidMount() {
     const firebaseConfig = {
-      // PUT FIREBASE KEYS HERE
+      apiKey: "AIzaSyCZ3nmX5s-xM32aQplwbCDNqZeKc9p9kho",
+      authDomain: "login-app-cc746.firebaseapp.com",
+      databaseURL: "https://login-app-cc746.firebaseio.com",
+      projectId: "login-app-cc746",
+      storageBucket: "login-app-cc746.appspot.com",
+      messagingSenderId: "767541623564",
+      appId: "1:767541623564:web:b78ba877d28c031834e729",
+      measurementId: "G-VSBDESWR36"
     }
     firebase.initializeApp(firebaseConfig)
 
