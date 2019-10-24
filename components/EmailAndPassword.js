@@ -9,6 +9,7 @@ export default class EmailAndPassword extends Component {
     this.state = {
       email: '',
       password: '',
+      verifyPassword: '',
       error: '',
       loading: false,
       loggingIn: false,
@@ -25,13 +26,22 @@ export default class EmailAndPassword extends Component {
       })
   }
 
-  onSignUp(email, password) {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .catch((error) => {
-      this.setState({
-        error: error.message
+  onSignUp(email, password, verify) {
+    if (password == verify) {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .catch((error) => {
+        this.setState({
+          error: error.message,
+          error: ''
+        })
       })
-    })
+    } else {
+      this.setState({
+        password: '',
+        verifyPassword: '',
+        error: 'Error: passwords do not match'
+      })
+    }
   }
   onToggleLogin(loggingIn) {
     if (loggingIn) {
@@ -93,11 +103,20 @@ export default class EmailAndPassword extends Component {
       value={this.state.password}
       onChangeText={(password) => this.setState({password})}
     />
+    <TextInput
+      placeholder="confirm pass"
+      secureTextEntry
+      placeholderTextColor='black'
+      style={styles.login}
+      value={this.state.verifyPassword}
+      onChangeText={(verifyPassword) => this.setState({verifyPassword})}
+    />
     <TouchableOpacity
-      onPress={() => {this.onSignUp(this.state.email, this.state.password)}}
+      onPress={() => {this.onSignUp(this.state.email, this.state.password, this.state.verifyPassword)}}
     >
       <Text style={styles.loginbutton}>sign up</Text>
     </TouchableOpacity>
+    <Text>{this.state.verifyPassword}</Text>
     </View>
   )
   }
@@ -151,9 +170,9 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderColor: 'rgba(255,255,255,0.5)',
     borderWidth: 2,
-    paddingHorizontal: 80,
+    paddingHorizontal: 30,
     marginTop: 8,
-    fontSize: 30,
+    fontSize: 20,
     width: 300
   },
   container: {

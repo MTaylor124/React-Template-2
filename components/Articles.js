@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
 import firebase from 'firebase'
-//
-// import Notes from './notes/Notes'
-// import Routes from './notes/Routes'
+
 
 export default class Articles extends Component {
   constructor() {
